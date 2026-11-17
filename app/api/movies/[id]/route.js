@@ -76,3 +76,35 @@ export async function PUT(request, { params }) {
     );
   }
 }
+
+
+
+export async function DELETE(request, { params }) {
+  try {
+    const { id } = await params;
+
+    const [result] = await pool.execute(
+      "DELETE FROM movies WHERE id = ?",
+      [id]
+    );
+
+    if (result.affectedRows === 0) {
+      return NextResponse.json(
+        { error: "Filmen hittades inte" },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json({
+      message: "Filmen raderades!",
+      movieID: Number(id),
+    });
+  } catch (error) {
+    console.error("DELETE movie error:", error);
+
+    return NextResponse.json(
+      { error: "Kunde inte radera filmen" },
+      { status: 500 }
+    );
+  }
+}
