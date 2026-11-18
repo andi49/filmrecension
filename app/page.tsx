@@ -1,7 +1,12 @@
+
+import Hero from "@/components/Hero";
+import MovieList from "@/components/MovieList";
+
 export default function Home() {
   return (
-    <>
-    <h1>Hello world</h1>
-    </>
+    <main>
+      <Hero />
+      <MovieList limit={6}/>
+    </main>
   );
 }
