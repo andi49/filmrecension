@@ -1,14 +1,27 @@
-require('dotenv').config()
-const db = require("./db");
+require("dotenv").config();
 
-const express = require('express')
-const app = express()
+const express = require("express");
 
-app.use(express.json())
+const reviewRoutes = require("./src/routes/reviewRoutes");
+const authRoutes = require("./src/routes/authRoutes");
+const db = require("#config/db");
 
-app.get('/', (req, res) => {
-    res.json({message: 'FILMRECENSION IS UP!'})
-})
+const app = express();
+
+app.use(express.json());
+
+
+app.use("/api/auth", authRoutes);
+
+
+app.use("/api", reviewRoutes);
+
+app.use("/api", reviewRoutes);
+
+
+app.get("/", (req, res) => {
+  res.json({ message: "FILMRECENSION IS UP!" });
+});
 
 
 app.get("/api/movies", async (req, res) => {
@@ -28,10 +41,8 @@ app.get("/api/movies", async (req, res) => {
   }
 });
 
-
-
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, '0.0.0.0', () => {
-    console.log(`SERVER RUNNING ON PORT ${PORT}`)
-})
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`SERVER RUNNING ON PORT ${PORT}`);
+});
