@@ -1,0 +1,200 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FilmRecension | Upptäck filmer</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/app.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <div class="container navbar">
+
+      <a href="/" class="logo">
+        <span class="logo-icon">▶</span>
+        Film<span>Recension</span>
+      </a>
+
+      <nav class="nav-links">
+        <button id="homeBtn" type="button">Utforska filmer</button>
+        <button id="watchlistBtn" type="button">Min lista</button>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="loginBtn" type="button" class="btn-outline">
+          Logga in
+        </button>
+
+        <button id="registerBtn" type="button" class="btn-primary">
+          Skapa konto
+        </button>
+
+        <button id="logoutBtn" type="button" class="btn-outline" hidden>
+          Logga ut
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main>
+
+    <!-- STARTSIDA -->
+    <section id="moviesSection">
+
+      <div class="hero">
+        <div class="container hero-content">
+
+          <p class="eyebrow">DIN PLATS FÖR FILMER</p>
+
+          <h1>
+            Upptäck din nästa
+            <span>favoritfilm.</span>
+          </h1>
+
+          <p class="hero-description">
+            Utforska filmer, dela dina åsikter och hitta
+            nya favoriter tillsammans med andra filmälskare.
+          </p>
+
+          <a href="#movieCollection" class="btn-primary hero-button">
+            Utforska filmer
+          </a>
+
+        </div>
+      </div>
+
+      <div class="container collection" id="movieCollection">
+
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">FILMBIBLIOTEK</p>
+            <h2>Utforska filmer</h2>
+          </div>
+
+          <p class="section-description">
+            Hitta något värt att se.
+          </p>
+        </div>
+
+        <div id="moviesList" class="movies-grid">
+          <p>Hämtar filmer...</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- INLOGGNING -->
+    <section id="loginSection" class="auth-section" hidden>
+
+      <div class="auth-card">
+        <p class="eyebrow">VÄLKOMMEN TILLBAKA</p>
+        <h2>Logga in</h2>
+
+        <p class="auth-description">
+          Logga in för att skriva recensioner och spara filmer.
+        </p>
+
+        <form id="loginForm">
+          <label for="loginEmail">E-postadress</label>
+          <input
+            type="email"
+            id="loginEmail"
+            placeholder="namn@exempel.se"
+            autocomplete="email"
+            required
+          >
+
+          <label for="loginPassword">Lösenord</label>
+          <input
+            type="password"
+            id="loginPassword"
+            placeholder="Ditt lösenord"
+            autocomplete="current-password"
+            required
+          >
+
+          <button type="submit" class="btn-primary form-button">
+            Logga in
+          </button>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- REGISTRERING -->
+    <section id="registerSection" class="auth-section" hidden>
+
+      <div class="auth-card">
+        <p class="eyebrow">BLI MEDLEM</p>
+        <h2>Skapa konto</h2>
+
+        <p class="auth-description">
+          Bli medlem och börja dela dina filmupplevelser.
+        </p>
+
+        <form id="registerForm">
+          <label for="registerEmail">E-postadress</label>
+          <input
+            type="email"
+            id="registerEmail"
+            placeholder="namn@exempel.se"
+            autocomplete="email"
+            required
+          >
+
+          <label for="registerPassword">Lösenord</label>
+          <input
+            type="password"
+            id="registerPassword"
+            placeholder="Välj ett lösenord"
+            autocomplete="new-password"
+            required
+          >
+
+          <button type="submit" class="btn-primary form-button">
+            Skapa konto
+          </button>
+        </form>
+      </div>
+
+    </section>
+
+    <!-- BEVAKNINGSLISTA -->
+    <section id="watchlistSection" class="container collection" hidden>
+
+      <p class="eyebrow">DINA SPARADE FILMER</p>
+      <h2>Min lista</h2>
+
+      <div id="watchlistList" class="movies-grid">
+        <p>Här kommer dina sparade filmer att visas.</p>
+      </div>
+
+    </section>
+
+    <!-- MEDDELANDEN -->
+    <div class="container">
+      <p id="message" role="status" aria-live="polite"></p>
+    </div>
+
+  </main>
+
+  <!-- SIDFOT -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 FilmRecension</p>
+      <p>Skapad med HTML, CSS, JavaScript och Node.js</p>
+    </div>
+  </footer>
+
+</body>
+</html>
+ 

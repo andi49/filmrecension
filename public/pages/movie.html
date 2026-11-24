@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Film | FilmRecension</title>
+
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/movie.js" defer></script>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <div class="container navbar">
+
+      <a href="/" class="logo">
+        <span class="logo-icon">▶</span>
+        Film<span>Recension</span>
+      </a>
+
+      <a href="/" class="btn-outline">
+        Tillbaka till filmer
+      </a>
+
+    </div>
+  </header>
+
+  <main class="container movie-page">
+
+    <!-- FILMINFORMATION -->
+    <section class="movie-details">
+
+      <div class="movie-poster" id="moviePoster">
+        🎬
+      </div>
+
+      <div class="movie-description">
+
+        <p class="eyebrow">FILMINFORMATION</p>
+
+        <h1 id="movieTitle">Hämtar film...</h1>
+
+        <p id="movieGenre"></p>
+        <p id="movieYear"></p>
+
+        <button id="addWatchlistBtn"
+                class="btn-primary" hidden>
+          + Lägg till i min lista
+        </button>
+
+      </div>
+
+    </section>
+
+    <!-- RECENSIONER -->
+    <section class="reviews-section">
+
+      <p class="eyebrow">VAD TYCKER ANDRA?</p>
+      <h2>Recensioner</h2>
+
+      <div id="reviewsList">
+        <p>Hämtar recensioner...</p>
+      </div>
+
+    </section>
+
+    <!-- SKRIV RECENSION -->
+    <section id="reviewSection" class="review-section" hidden>
+
+      <h2>Skriv en recension</h2>
+
+      <form id="reviewForm">
+
+        <label for="rating">Betyg (1–10)</label>
+
+        <input
+          type="number"
+          id="rating"
+          min="1"
+          max="10"
+          required
+        >
+
+        <label for="comment">Din recension</label>
+
+        <textarea
+          id="comment"
+          rows="5"
+          placeholder="Vad tyckte du om filmen?"
+          required
+        ></textarea>
+
+        <button type="submit" class="btn-primary">
+          Publicera recension
+        </button>
+
+      </form>
+
+    </section>
+
+    <p id="loginNotice" hidden>
+      <a href="/">Logga in</a> för att skriva en recension.
+    </p>
+
+    <p id="message" role="status" aria-live="polite"></p>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 FilmRecension</p>
+      <p>Din plats för filmer</p>
+    </div>
+  </footer>
+
+</body>
+</html>
