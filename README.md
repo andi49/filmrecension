@@ -77,7 +77,7 @@ The project uses MySQL and contains four database tables:
 
 ### ER Diagram
 
-![ER Diagram](ER-diagram.png)
+![ER Diagram](ER-DIAGRAM.png)
 
 The reviews and watchlist tables are connected to the users and movies tables through foreign keys.
 
