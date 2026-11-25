@@ -24,7 +24,7 @@
 
       <nav class="nav-links">
         <button id="homeBtn" type="button">Utforska filmer</button>
-        <button id="watchlistBtn" type="button">Min lista</button>
+        <button id="watchlistBtn" type="button" hidden>Min lista</button>
       </nav>
 
       <div class="nav-actions">
@@ -169,16 +169,25 @@
     </section>
 
     <!-- BEVAKNINGSLISTA -->
-    <section id="watchlistSection" class="container collection" hidden>
+   <!-- BEVAKNINGSLISTA -->
+<section id="watchlistSection" class="container collection" hidden>
 
+  <div class="section-heading">
+    <div>
       <p class="eyebrow">DINA SPARADE FILMER</p>
       <h2>Min lista</h2>
+    </div>
 
-      <div id="watchlistList" class="movies-grid">
-        <p>Här kommer dina sparade filmer att visas.</p>
-      </div>
+    <p class="section-description">
+      Dina filmer som du vill se senare.
+    </p>
+  </div>
 
-    </section>
+  <div id="watchlistList" class="movies-grid">
+    <p>Hämtar dina sparade filmer...</p>
+  </div>
+
+</section>
 
     <!-- MEDDELANDEN -->
     <div class="container">

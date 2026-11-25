@@ -1,5 +1,3 @@
-
-
 const moviesSection = document.getElementById("moviesSection");
 const loginSection = document.getElementById("loginSection");
 const registerSection = document.getElementById("registerSection");
@@ -30,6 +28,7 @@ function updateNavigation() {
   document.getElementById("loginBtn").hidden = loggedIn;
   document.getElementById("registerBtn").hidden = loggedIn;
   document.getElementById("logoutBtn").hidden = !loggedIn;
+  document.getElementById("watchlistBtn").hidden = !loggedIn;
 }
 
 // Visa alla filmer
@@ -64,7 +63,6 @@ async function loadMovies() {
       const details = document.createElement("p");
       details.textContent = `${movie.genre} • ${movie.release_year}`;
 
-     
       const movieButton = document.createElement("button");
       movieButton.className = "btn-primary";
       movieButton.textContent = "Visa film";
@@ -76,11 +74,134 @@ async function loadMovies() {
       info.append(title, details, movieButton);
       card.append(poster, info);
       moviesList.appendChild(card);
-
     });
 
   } catch (error) {
     moviesList.textContent = error.message;
+  }
+}
+
+// Hämta och visa användarens sparade filmer
+async function loadWatchlist() {
+  const watchlistList = document.getElementById("watchlistList");
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    watchlistList.textContent = "Du måste logga in.";
+    return;
+  }
+
+  watchlistList.textContent = "Hämtar dina sparade filmer...";
+
+  try {
+    const response = await fetch("/api/watchlist", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error("Kunde inte hämta din lista");
+    }
+
+    const movies = await response.json();
+
+    if (token !== localStorage.getItem("token")) {
+      return;
+    }
+
+    watchlistList.innerHTML = "";
+
+    if (movies.length === 0) {
+      watchlistList.textContent = "Du har inga sparade filmer ännu.";
+      return;
+    }
+
+    movies.forEach((movie) => {
+      const card = document.createElement("div");
+      card.className = "movie-card";
+
+      const poster = document.createElement("div");
+      poster.className = "movie-poster";
+      poster.textContent = "🎬";
+
+      const info = document.createElement("div");
+      info.className = "movie-info";
+
+      const title = document.createElement("h3");
+      title.textContent = movie.title;
+
+      const details = document.createElement("p");
+      details.textContent = `${movie.genre} • ${movie.release_year}`;
+
+      const movieButton = document.createElement("button");
+      movieButton.className = "btn-primary";
+      movieButton.textContent = "Visa film";
+
+      movieButton.addEventListener("click", () => {
+        window.location.href = `/pages/movie.html?id=${movie.id}`;
+      });
+
+      const removeButton = document.createElement("button");
+      removeButton.className = "btn-outline";
+      removeButton.textContent = "Ta bort";
+
+      removeButton.addEventListener("click", async () => {
+        removeButton.disabled = true;
+
+        try {
+          await removeFromWatchlist(movie.id);
+        } finally {
+          removeButton.disabled = false;
+        }
+      });
+
+      info.append(title, details, movieButton, removeButton);
+      card.append(poster, info);
+      watchlistList.appendChild(card);
+    });
+
+  } catch (error) {
+    if (token === localStorage.getItem("token")) {
+      watchlistList.textContent = error.message;
+    }
+  }
+}
+
+// Ta bort en film från användarens lista
+async function removeFromWatchlist(movieId) {
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`/api/watchlist/${movieId}`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Kunde inte ta bort filmen");
+    }
+
+    if (token !== localStorage.getItem("token")) {
+      return;
+    }
+
+    message.textContent = "Filmen har tagits bort från din lista.";
+
+    await loadWatchlist();
+
+  } catch (error) {
+    if (token === localStorage.getItem("token")) {
+      message.textContent = error.message;
+    }
   }
 }
 
@@ -170,13 +291,18 @@ document.getElementById("registerBtn").addEventListener("click", () => {
 
 document.getElementById("watchlistBtn").addEventListener("click", () => {
   showSection(watchlistSection);
+  loadWatchlist();
 });
 
 // Logga ut
 document.getElementById("logoutBtn").addEventListener("click", () => {
   localStorage.removeItem("token");
+
+  document.getElementById("watchlistList").innerHTML = "";
+
   updateNavigation();
   showSection(moviesSection);
+
   message.textContent = "Du har loggat ut.";
 });
 

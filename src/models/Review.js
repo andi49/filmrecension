@@ -23,22 +23,23 @@ static async updateByOwner(reviewId, userId, rating, comment) {
 
    
   static async getByMovieId(movieId) {
-    const [rows] = await db.execute(
-      `SELECT
-        reviews.id,
-        reviews.movie_id,
-        reviews.rating,
-        reviews.comment,
-        users.email AS reviewer
-       FROM reviews
-       JOIN users ON reviews.user_id = users.id
-       WHERE reviews.movie_id = ?
-       ORDER BY reviews.id DESC`,
-      [movieId]
-    );
+  const [rows] = await db.execute(
+    `SELECT
+      reviews.id,
+      reviews.user_id,
+      reviews.movie_id,
+      reviews.rating,
+      reviews.comment,
+      users.email AS reviewer
+     FROM reviews
+     JOIN users ON reviews.user_id = users.id
+     WHERE reviews.movie_id = ?
+     ORDER BY reviews.id DESC`,
+    [movieId]
+  );
 
-    return rows;
-  }
+  return rows;
+}
 
  
   async save() {

@@ -5,6 +5,7 @@ import path from "node:path";
 
 import reviewRoutes from "./src/routes/reviewRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
+import watchlistRoutes from "./src/routes/watchlistRoutes.js";
 import db from "#config/db";
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.static(path.join(process.cwd(), "public")));
 // API ROUTES
 app.use("/api/auth", authRoutes);
 app.use("/api", reviewRoutes);
+app.use("/api", watchlistRoutes);
 
 // HÄMTA ALLA FILMER
 app.get("/api/movies", async (req, res) => {
