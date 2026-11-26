@@ -1,4 +1,5 @@
 
+// Läser och sparar användarkonton i databasen.
 const db = require("#config/db");
 
 class User {

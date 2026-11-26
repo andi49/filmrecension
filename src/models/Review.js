@@ -1,3 +1,4 @@
+// Läser, sparar och uppdaterar recensioner i databasen.
 const db = require("#config/db");
 
 class Reviews {
@@ -10,18 +11,12 @@ class Reviews {
 
 
 static async updateByOwner(reviewId, userId, rating, comment) {
-  const [result] = await db.execute(
-    `UPDATE reviews
-     SET rating = ?, comment = ?
-     WHERE id = ? AND user_id = ?`,
-    [rating, comment, reviewId, userId]
-  );
+  const [result] = await db.execute(  `UPDATE reviews SET rating = ?, comment = ?  WHERE id = ? AND user_id = ?`,
+    [rating, comment, reviewId, userId] );
 
   return result.affectedRows > 0;
 }
 
-
-   
   static async getByMovieId(movieId) {
   const [rows] = await db.execute(
     `SELECT

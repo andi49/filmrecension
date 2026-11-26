@@ -1,3 +1,4 @@
+// Definierar inloggningsskyddade API-rutter för watchlisten.
 const express = require("express");
 const router = express.Router();
 

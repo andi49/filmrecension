@@ -1,3 +1,4 @@
+// Definierar API-rutter för att läsa och ändra filmrecensioner.
 const express = require("express");
 const ReviewController = require("../controllers/reviewController");
 const authMiddleware = require("../middleware/authMiddleware");

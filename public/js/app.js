@@ -1,3 +1,4 @@
+// Styr startsidans navigation, autentisering, filmer och watchlist.
 const moviesSection = document.getElementById("moviesSection");
 const loginSection = document.getElementById("loginSection");
 const registerSection = document.getElementById("registerSection");

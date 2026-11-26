@@ -1,4 +1,5 @@
 
+// Verifierar JWT-token och kopplar inloggad användare till API-anropet.
 const jwt = require("jsonwebtoken");
 
 function authMiddleware(req, res, next) {

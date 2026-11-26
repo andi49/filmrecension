@@ -1,3 +1,4 @@
+// Hanterar användarens sparade filmer och ändringar i watchlisten.
 const Watchlist = require("../models/Watchlist");
 
 

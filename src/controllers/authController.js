@@ -1,4 +1,5 @@
 
+// Hanterar registrering och inloggning av användare.
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");

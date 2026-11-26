@@ -1,3 +1,4 @@
+// Hanterar hämtning, skapande och uppdatering av filmrecensioner.
 const Review = require("../models/Review");
 const db = require("#config/db");
 

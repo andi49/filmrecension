@@ -1,4 +1,5 @@
 
+// Kopplar autentiserings-URL:er till rätt controller-funktioner.
 const express = require("express");
 const router = express.Router();
 

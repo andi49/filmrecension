@@ -28,16 +28,89 @@ The project consists of a REST API, a MySQL database and a frontend built with H
 
 ## Installation
 
-Docker and Docker Compose must be installed to run the project.
+### Prerequisites
 
-1. Download and extract the project.
-2. Open the project folder in your terminal.
-3. Create a `.env` file based on `.env.example`.
-4. Start the application:
+- Docker Desktop for Windows or macOS.
+- Docker Compose (included with Docker Desktop).
+
+Download Docker Desktop from:
+https://www.docker.com/products/docker-desktop/
+
+Make sure Docker Desktop is running before starting the application.
+
+### 1. Download the project
+
+Download and extract the project from GitHub.
+
+Open the project folder in VS Code or in your terminal.
+
+### 2. Configure environment variables
+
+Create a `.env` file by copying the provided `.env.example` file.
+
+**Windows (PowerShell):**
+
+```powershell
+Copy-Item .env.example .env
+```
+
+**macOS (Terminal):**
+
+```bash
+cp .env.example .env
+```
+
+Open the newly created `.env` file and replace the example passwords and JWT secret with your own values.
+
+Keep the database host, username, database name and port unchanged.
+
+The `.env` file contains sensitive information and should never be shared or committed to GitHub.
+
+### 3. Start the application
+
+Run the following command from the project folder. This command works on both Windows and macOS.
 
 ```bash
 docker compose up -d --build
 ```
+
+Docker Compose will build the backend and start the MySQL database.
+
+The database tables and four initial movies are automatically created when the database is initialized for the first time.
+
+### 4. Open the application
+
+Open the following address in your browser:
+
+http://localhost:3000
+
+You can now register an account, log in, browse movies, write reviews and manage your personal watchlist.
+
+### 5. Check the running containers
+
+```bash
+docker compose ps
+```
+
+### 6. Stop the application
+
+```bash
+docker compose down
+```
+
+The database is stored in a persistent Docker volume, which means that users, reviews and saved movies are preserved when the application is stopped.
+
+### Troubleshooting
+
+If the application does not start correctly, check the container logs:
+
+```bash
+docker compose logs backend
+```
+
+Make sure Docker Desktop is running and that the `.env` file contains the correct environment variables.
+
+If you are using an existing database volume, the database password must match the password used when the database was originally initialized.
 
 5. Open the application in your browser:
 

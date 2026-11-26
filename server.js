@@ -1,4 +1,5 @@
 
+// Startar Express-servern och kopplar samman webbplatsen med API:et.
 import "dotenv/config";
 import express from "express";
 import path from "node:path";

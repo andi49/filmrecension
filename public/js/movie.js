@@ -1,3 +1,4 @@
+// Visar filminformation och hanterar recensioner samt watchlist på filmsidan.
 // Hämta filmens ID från URL
 const params = new URLSearchParams(window.location.search);
 const movieId = Number(params.get("id"));

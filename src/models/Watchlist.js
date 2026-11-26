@@ -1,3 +1,4 @@
+// Hanterar sparade filmer för användare i databasen.
 const db = require("#config/db");
 
 class Watchlist {
@@ -27,12 +28,7 @@ class Watchlist {
 
 
   async save() {
-    await db.execute(
-      `INSERT INTO watchlist (user_id, movie_id)
-       VALUES (?, ?)`,
-      [this.userId, this.movieId]
-    );
-
+    await db.execute(  `INSERT INTO watchlist (user_id, movie_id)  VALUES (?, ?)`, [this.userId, this.movieId]);
     return {
       userId: this.userId,
       movieId: this.movieId
@@ -42,10 +38,7 @@ class Watchlist {
 
   static async deleteByOwner(userId, movieId) {
     const [result] = await db.execute(
-      `DELETE FROM watchlist
-       WHERE user_id = ? AND movie_id = ?`,
-      [userId, movieId]
-    );
+      `DELETE FROM watchlist WHERE user_id = ? AND movie_id = ?`,[userId, movieId]);
 
     return result.affectedRows > 0;
   }
